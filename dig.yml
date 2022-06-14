@@ -1,13 +1,12 @@
 ---
 - name: dig
-  hosts: all
+  hosts: localhost
   become: true
 
   tasks:
   - name: Check system information
-    shell:
-    	"lsb_release -a"
-    register: os_info
+    shell: "dig example.com +short"
+    register: dig_info
     
   - debug:
-    	msg: "{{os_info.stdout_lines}}"
+      msg: "{{dig_info.stdout_lines}}"
