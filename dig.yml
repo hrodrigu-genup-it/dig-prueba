@@ -1,10 +1,13 @@
 ---
-- name: Install nginx
+- name: dig
   hosts: all
   become: true
 
   tasks:
-  - name: Simple A record (IPV4 address) lookup for example.com
-    ansible.builtin.debug:
-      msg: "{{ lookup('community.general.dig', 'example.com.')}}"
-
+  - name: Check system information
+    shell:
+    	"lsb_release -a"
+    register: os_info
+    
+  - debug:
+    	msg: "{{os_info.stdout_lines}}"
