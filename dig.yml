@@ -1,6 +1,6 @@
 ---
 - name: dig
-  hosts: localhost
+  hosts: all
   become: true
 
   tasks:
